@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+    
+    <title>Richmond, Virginia: James River Explorer</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<!--put your external stylesheet links here-->
+	<link rel="stylesheet" href="/777_2/css/style.css"/>
+    <link rel="stylesheet" href="/777_2/lib/leaflet/dist/leaflet.css" /> <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css">
+	<link rel="stylesheet" href="/777_2/lib/leaflet-search/dist/leaflet-search.src.css">
+	<link rel="stylesheet" href="/777_2/lib/leaflet.coordinates/dist/Leaflet.Coordinates-0.1.5.css">
+	<link rel="stylesheet" href="lib/sidebar-v2-master/css/leaflet-sidebar.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"> <!-- jQuery UI CSS -->
+		
+				
+		<!-- Font Awesome JS -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+		
+		<!--Google Fonts-->
+		<link href="https://fonts.googleapis.com/css?family=Coustard|Oswald|Roboto|Questrial" rel="stylesheet"> 
+		
+	
+		
+		
+</head>
+
+	<body> 
+		
+	
+		<!--Side Panel-->
+		
+<div id="sidebar" class="sidebar sidebar-left leaflet-touch collapsed">
+		   <div class="sidebar-tabs">
+            <ul role="tablist">
+				<li ><a href="#messages" role="tab"><i class=" 	fas fa-info-circle"></i></a></li>
+				<li><a href="#layers" role="tab"><i class="fas fa-layer-group"></i></a></li>
+                <li><a href="#home" role="tab"><i class="fas fa-search-location"></i></a></li>
+                <li><a href="#profile" role="tab"><i class="fas fa-user-edit"></i></a></li>
+				
+                
+            </ul>
+
+            <ul role="tablist">
+               <li><a href="https://github.com/mahonemc" role="tab" target="_blank"><i class="fa fa-github"></i></a></li>
+            </ul>
+        </div>
+				 <div class="sidebar-content">
+					 <div class="sidebar-pane" id="messages" align="center">
+						 <h1 class="sidebar-header">About<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>  <img src="/777_2/img/belleisle.jpg" alt="Belle Isle" style="width:400px;height:350px;"><h7><i> Photo courtesy of Richmond, VA Tourism</i></h7>
+						 
+						 <br>
+						 <p> <br><br> <b>Richmond, Virginia</b>  is a state capital like none other! Where else can you find class III and IV rapids running through a downtown? Richmond, Virginia Tourism says "Richmond is the only place in the country where you can run the rapids, pull out and walk to a downtown brewery, bar or restaurant. The James River Park system features single track trails, the North Bank and Buttermilk (a Best Urban Trail), that are perfect for hiking, running and mountain biking." <br> <br> Use this app to explore the James River and its associated parks. Click on the buttons in the side panel to find local points of interests and bus routes to get to your favorite part of the park.You can report trail conditions in the "Edit" menu. Turn layers on and off to view trails, points of interest, breweries, and other park areas in Richmond. If you aren't sure where a particular trail or interest point is, click the search tool to locate it. </p><br>
+						 <a href = 'https://jamesriverpark.org/' target="_blank">Visit the Park Website</a>
+					 </div>
+					 
+            <div class="sidebar-pane" id="home">
+                <h1 class="sidebar-header">
+                    Find Locations
+                    <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+                </h1><br><br>
+				<h3>Search Points of Interest or Trails</h3>
+				<div id="search"></div><br><br>
+				<h3>Find Your Location</h3>
+							
+				<button onclick="findUser()" value="Find Your Location"><i class="fas fa-location-arrow"></i>&nbsp; Find Your Location</button>
+				<input type="button" onclick="resetSearch()" value="Reset Map"><div></div>
+				<div></div>
+				<h3>Find The Closest Points of Interest</h3>
+				<button onclick="locateUser()" value="Find Closest Points of Interest"><i class="fas fa-map-marked-alt"></i> &nbsp; Find POI</button><div></div>
+				<input type="button" onclick="resetSearch()" value="Reset Map"><div></div>
+							
+				<h3>Find The Closest Bus Stop</h3>
+							
+				<button onclick="locateStops()" value="Find Closest Bus Stops"><i class="fas fa-bus-alt"></i> &nbsp; Find Closest Bus Stop</button>
+				<input type="button" onclick="resetSearch()" value="Reset Map">
+														 
+					 </div>
+
+            <div class="sidebar-pane" id="profile">
+                <h1 class="sidebar-header">Add Trail Information<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+				
+							
+							<h2>Add a Trail Advisory</h2>
+							<h6>Click "Start Editing" to activate the edit buttons on the right side of the map, below the coordinates. </h6>
+							<input type="button" onclick="startEdits()" value="Click to Start Editing">
+							<input type="button" onclick="stopEdits()" value="Stop Your Editing Session">
+							
+					 </div>
+					 
+					 <div class="sidebar-pane" id="layers">
+                <h1 class="sidebar-header">Layers<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+							<h2>Layers</h2>
+							<div id="stack"></div>							
+					 </div>
+	</div>
+		</div>      
+					
+<div id="dialog" title="Point Information">
+  <form>
+    <fieldset>
+      <label for="username">Your Name</label>
+      <input type="text" name="username" id="username" placeholder="Enter your Name" class="text ui-widget-content ui-corner-all"><br>
+		<label for="trailname">Trail Name</label><br>
+      <select type="text" name="trailname" id="trailname" placeholder="Enter Trail" class="text ui-widget-content ui-corner-all"><option disabled selected>Select Trail</option>
+		  <option value="Belle Isle">Belle Isle</option>
+		  <option value="Belle Isle Service Road">Belle Isle Service Road</option>
+		  <option value="Boulevard Bridge">Boulevard Bridge</option>
+		  <option value="Buttermilk">Buttermilk</option>
+		  <option value="Dogwood Dell Bike Trail">Dogwood Dell Bike Trail</option>
+		  <option value="Dogwood Dell Hiking Trail">Dogwood Dell Hiking Trail</option>
+		  <option value="Forest Hill">Forest Hill</option>
+		  <option value="James River Park Main Area">James River Park Main Area</option>
+		  <option value="North Bank">North Bank</option>
+		  <option value="other">Other(describe in description)</option>
+</select> <br>
+		<label for="date">Date</label>
+      <input type="date" name="date" id="date" placeholder="Enter Date" class="text ui-widget-content ui-corner-all"><br>
+      <label for="hazdescription">Hazard Description</label>
+		<select type="select" name="hazdescription" id="hazdescription" placeholder="Select trail hazard" class="text ui-widget-content ui-corner-all">  <option disabled selected>Select Hazard</option>
+		<option value="flooding">Flooding</option>
+		<option value="obstruction">Downed Trees or Obstruction</option>
+		<option value="pothole">Pothole</option>
+		<option value="other">Other(describe in description)</option>
+</select> <br>
+		<label for="description">General Description</label>
+      <input type="text" name="description" id="description" placeholder="Description for trail" class="text ui-widget-content ui-corner-all"> 
+      <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+    </fieldset>
+  </form>
+</div>
+          
+       
+
+
+
+               
+
+
+        
+	<div id="map" class="sidebar-map"></div>
+     
+   	       
+                
+	</body>
+    
+	<!--put your external script links here-->
+   	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.0.1/jquery-migrate.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw=="crossorigin=""></script>
+   	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> <!-- jQueryUI v1.11.4 JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+	<script src='/777_2/lib/leaflet-search/dist/leaflet-search.src.js'></script>
+	<script src="/777_2/lib/leaflet.coordinates/dist/Leaflet.Coordinates-0.1.5.src.js"></script>
+	<script src = "lib/sidebar-v2-master/js/leaflet-sidebar.js"></script>
+	<!-- Include cartodb.js Library -->
+    <script src="https://cartodb-libs.global.ssl.fastly.net/carto.js/v4.0.2/carto.min.js"></script>
+    
+	<script src="/777_2/js/main.js"></script>
+	
+	
+                
+     
+</html>
