@@ -107,7 +107,7 @@ function showPOI(){
 			'pointToLayer': function (feature, latlng) {
         return new L.Marker(latlng, {
             'icon':new L.Icon({
-                'iconUrl': '/777_2/img/' + feature.properties.type + '.png',
+                'iconUrl': '/img/' + feature.properties.type + '.png',
 				'iconSize': [16, 16],
 				'shadowUrl': 'img/marker-shadow.png',
 				'shadowSize': [24, 20],
@@ -154,7 +154,7 @@ function showBrew(){
 			'pointToLayer': function (feature, latlng) {
         return new L.Marker(latlng, {
             'icon':new L.Icon({
-				'iconUrl': '/777_2/img/beer.png',
+				'iconUrl': '/img/beer.png',
               	'iconSize': [16, 16],
 				'shadowUrl': 'img/marker-shadow.png',
 				'shadowSize': [24, 20],
@@ -183,7 +183,7 @@ var areaStyle = {
 
 // Set stops icon
 var stopsIcon = L.icon({
-    iconUrl: '/777_2/img/stop.png',
+    iconUrl: '/img/stop.png',
 	 iconSize:[05, 05]
    });
 
@@ -373,7 +373,7 @@ function getGeoJSON(){
 		pointToLayer: function(feature,latlng){
 		  return new L.Marker(latlng, {
             'icon':new L.Icon({
-                'iconUrl': '/777_2/img/warning.png',
+                'iconUrl': '/img/warning.png',
 				'iconSize': [24, 20],
 				'shadowUrl': 'img/marker-shadow.png',
 				'shadowSize': [24, 20],
@@ -602,11 +602,11 @@ legendControl.onAdd = function (map) {
 
         // First append an <h3> heading tag to the div holding the current attribute
         div.innerHTML = "<h7><b>Points of Interest</b></h7><br>";
-	    div.innerHTML += '<img src="/777_2/img/church.png">'  + '  Place of Worship' + '<br>'
-		div.innerHTML +=  '<img src="/777_2/img/historic.png">'  + '     Landmark' + '<br>' 
-		div.innerHTML +=  '<img src="/777_2/img/school.png">'   +  '     School'+ '<br>'
-		div.innerHTML +=  '<img src="/777_2/img/sign.png">'   +  '     Information Sign'+ '<br>'
-		div.innerHTML +=  '<img src="/777_2/img/utility.png">'   +  '     Utility'+ '<br>'
+	    div.innerHTML += '<img src="/img/church.png">'  + '  Place of Worship' + '<br>'
+		div.innerHTML +=  '<img src="/img/historic.png">'  + '     Landmark' + '<br>' 
+		div.innerHTML +=  '<img src="/img/school.png">'   +  '     School'+ '<br>'
+		div.innerHTML +=  '<img src="/img/sign.png">'   +  '     Information Sign'+ '<br>'
+		div.innerHTML +=  '<img src="/img/utility.png">'   +  '     Utility'+ '<br>'
 		
        // Return the populated legend div to be added to the map   
         return div;
@@ -618,7 +618,7 @@ brewControl.onAdd = function (map) {
         var div = L.DomUtil.create('div', 'legend');
 
         // First append an <h3> heading tag to the div holding the current attribute
-        div.innerHTML = '<img src="/777_2/img/beer.png">'  + '  Brewery' + '<br>'
+        div.innerHTML = '<img src="/img/beer.png">'  + '  Brewery' + '<br>'
 		
        // Return the populated legend div to be added to the map   
         return div;
@@ -630,7 +630,7 @@ reviewControl.onAdd = function (map) {
         var div = L.DomUtil.create('div', 'legend');
 
         // First append an <h3> heading tag to the div holding the current attribute
-        div.innerHTML = '<img src="/777_2/img/warning.png">'  + '  Trail Review' + '<br>'
+        div.innerHTML = '<img src="/img/warning.png">'  + '  Trail Review' + '<br>'
 		
        // Return the populated legend div to be added to the map   
         return div;
@@ -642,7 +642,7 @@ stopControl.onAdd = function (map) {
         var div = L.DomUtil.create('div', 'legend');
 
         // First append an <h3> heading tag to the div holding the current attribute
-        div.innerHTML = '<img src="/777_2/img/stop.png">'  + '  Bus Stop' + '<br>'
+        div.innerHTML = '<img src="/img/stop.png">'  + '  Bus Stop' + '<br>'
 		
        // Return the populated legend div to be added to the map   
         return div;
@@ -654,7 +654,7 @@ routesControl.onAdd = function (map) {
         var div = L.DomUtil.create('div', 'legend');
 
         // First append an <h3> heading tag to the div holding the current attribute
-        div.innerHTML = '<img src="/777_2/img/routes.png">'  + '  Bus Route' + '<br>'
+        div.innerHTML = '<img src="/img/routes.png">'  + '  Bus Route' + '<br>'
 		
        // Return the populated legend div to be added to the map   
         return div;
@@ -666,7 +666,7 @@ boundControl.onAdd = function (map) {
         var div = L.DomUtil.create('div', 'legend');
 
         // First append an <h3> heading tag to the div holding the current attribute
-        div.innerHTML = '<img src="/777_2/img/boundary.png">'  + '  Park Boundary' + '<br>'
+        div.innerHTML = '<img src="/img/boundary.png">'  + '  Park Boundary' + '<br>'
 		
        // Return the populated legend div to be added to the map   
         return div;
@@ -678,7 +678,7 @@ trailControl.onAdd = function (map) {
         var div = L.DomUtil.create('div', 'legend');
 
         // First append an <h3> heading tag to the div holding the current attribute
-        div.innerHTML = '<img src="/777_2/img/trail.png">'  + '  Trail' + '<br>'
+        div.innerHTML = '<img src="/img/trail.png">'  + '  Trail' + '<br>'
 		
        // Return the populated legend div to be added to the map   
         return div;
